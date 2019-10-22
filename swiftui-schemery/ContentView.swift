@@ -8,14 +8,31 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Item {
+    let name: String
+}
+
+struct PlaygroundChooser: View {
+    let items = {
+        return [
+            Item(name: "Picker"),
+            Item(name: "Image View")
+        ]
+    }()
+
     var body: some View {
-        Text("Hello World")
+        List {
+            ForEach(items, id: \.name) { item in
+                Text(item.name)
+            }
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+#if DEBUG
+struct PlaygroundChooser_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        PlaygroundChooser()
     }
 }
+#endif
